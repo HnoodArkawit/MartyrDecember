@@ -1,0 +1,77 @@
+﻿@model HomeViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+<link href="~/css/hover.css" rel="stylesheet" />
+
+<section class="section main-banner" id="top" data-section="section1">
+    <div class="owl-banner owl-carousel">
+        @foreach (var item in Model.ProPic)
+        {
+            <div style="height:550px">
+                <img alt="profile" src="data:image/*;base64,@(Convert.ToBase64String(@item.ImageUrl))" style="height:550px" />
+            </div>
+        }
+    </div>
+    <div class="item" style="border: 0px;">
+        <p class="lead" style="margin: 20px;padding-top:0px;text-align: center;">
+            لن تشعر بفاجعة الموت في حينه ..
+            حتى هذا البكاء الذي ينتابك من هول الصدمة لن يشعرك به ..
+            ستشعر به عندما تجد أماكنهم الفارغة ماثلة أمامكَ دون وجودهم فيها ..
+            عندما تفتقد حضور وجوههم، وروائحهم، وحديثهم ..
+            عندما تتفقد دفء أياديهم فلا تجده، وصوت ضحكاتهم فلا تسمعه ..يمكنك أن تشعر بذلك ليلة عيد‏، وأنت تنتظر على أمل أن يأتوا ليجعلوا عيدك عيدًا، فلا يحدث ..
+            عندما تصبح أقصى أحلامك عناق صغير تضمهم به لعله يروى ظمأ فراقهم، فلا يحدث .. سيظل جزء منّا مبتور حتى نلقاهم فى جنة نعيم
+            فكُل أمرٍ في أوّله جَلل ثم يهون إلا الموت وإن بدا هين لا يهون ..!
+            أمواتنا لا نبكيكم إعتراضاً فكل نفس ذائقة الموت ... ولكن نبكيكم إفتقاداً وإشتياقاً ..  ربي أنر قبورهم وارحمهم برحمتك التي وسعت كل شئ.
+        </p>
+    </div>
+</section>
+
+<div class="discover-items">
+    <div style="margin:30px;direction: rtl;">
+        <div class="row">
+            <div >
+                <form id="search-form" action="~/MarVid/Search">
+                    <div class="row">
+                        <div class="col-lg-4" style="padding:10px;">
+                            @using (Html.BeginForm("Search", "MarVid", FormMethod.Post))
+                            {
+                                <input type="text" name="shearchName" id="ShearchName"
+                                   placeholder="ابحث هنا عن شهيد" />
+                            }
+                        </div>
+                        <div class="col-lg-2"style="padding:10px;">
+                            <fieldset>
+                                <button class="main-button">Search</button>
+                            </fieldset>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            @foreach (var SubItem in Model.MartyrVideo)
+            {
+                <div class="col-xl-2 col-sm-12 col-lg-4 col-md-6">
+                    <div class="featured-explore">
+                        <div class="item">
+                            <div class="thumb">
+                                <div class="col-12 alert alert-dark" style="background-color: #000;border-radius: 15px 15px 0px 0px;position: relative;width: 100%;margin-bottom:0px;text-align:center;">
+                                    <h4>@Html.DisplayFor(modelItem => SubItem.MartyrName)</h4>
+                                </div>
+                                <div class="video-frame">
+                                    <video id="bg-video" style="min-height: 50vh;max-height: 40vh;border-radius: 0px 0px 20px 20px;" src="data:image/*;base64,@(Convert.ToBase64String(SubItem.VideoUrl))" controls loop />
+                                </div>
+                                <div class="hover-effect">
+                                    <div class="content">
+                                        <h6>@Html.DisplayFor(modelItem => SubItem.Description)</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

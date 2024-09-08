@@ -1,0 +1,38 @@
+﻿@model IEnumerable<MartyrDecember.Domain.MarVid>
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+
+<div class="discover-items">
+    <div class="container" style="padding:150px 40px 150px 40px;direction: rtl;">
+        <div class="row">
+
+            @foreach (var SubItem in Model)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="featured-explore">
+                        <div class="item">
+                            <div class="thumb">
+                                <div class="col-12 alert alert-dark" style="background-color: #000;border-radius: 15px 15px 0px 0px;position: relative;width: 100%;margin-bottom:0px;text-align:center;">
+                                    <h4>@Html.DisplayFor(modelItem => SubItem.MartyrName)</h4>
+                                </div>
+                                <div class="video-frame">
+                                    <video id="bg-video" style="min-height: 50vh;max-height: 40vh;width: 374px;border-radius: 0px 0px 20px 20px;" src="data:image/*;base64,@(Convert.ToBase64String(SubItem.VideoUrl))" controls loop />
+                                </div>
+                                <div class="hover-effect">
+                                    <div class="content">
+                                        <h6>@Html.DisplayFor(modelItem => SubItem.Description)</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <br />
+            <a href="~/Home/ViewVideo" class="btn btn-outline-info col-12">الرجوع للخلف</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,139 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+<style type="text/css">
+    body {
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: url(image/bg.jpg) no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .box {
+        width: 280px;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+        height: 350px;
+        color: #efefef;
+        background-color: #383535;
+        margin: 1% 0;
+        box-shadow: 10px 10px 7px rgba(33, 33, 33, 0.41);
+        border-radius: 20px;
+    }
+
+    .textlog input {
+        margin: 10% 0;
+        color: #f7f7f7;
+        outline: none;
+        border: none;
+        border-bottom: 2px solid #494848;
+        background: none;
+    }
+
+    .textlog a {
+        margin-top: 5%;
+        font-size: 12px;
+        text-decoration: none;
+        color: #838383;
+    }
+
+        .textlog a:hover {
+            color: #a1a1a1;
+            transition: 1s;
+        }
+
+    .btu {
+        width: 100%;
+        padding: 3%;
+        margin-top: 5%;
+        background: none;
+        border: none;
+        font-size: 14px;
+        color: #fcfcfc;
+        cursor: pointer;
+        transition: 1s;
+    }
+
+        .btu:hover {
+            background: #6b6b6b;
+            transition: 1s;
+        }
+
+    hr {
+        width: 70%;
+    }
+
+    h4 {
+        position: relative;
+        font-size: 12px;
+    }
+
+</style>
+<div class="container" style="padding: 150px;">
+    <div class="row">
+
+        <form id="form1" method="post">
+            <div class="box">
+                <h1>تسجيل الدخول</h1>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="textlog">
+                    <div class="col-md-12">
+                        <input asp-for="Input.Email" class="form-control" id="txtuser" autocomplete="username" placeholder="ادخل اسم المستخدم او الايميل" onclick="textselect(this.id);" aria-required="true" />
+                    </div>
+                    <div>
+                        <input asp-for="Input.Password" class="form-control" id="txtpass" autocomplete="current-password" placeholder="ادخل كلمة المرور" onclick="textselect(this.id);" aria-required="true" />
+                    </div>
+                    <div>
+                        <div class="checkbox" style="text-align:left;margin:10px;vertical-align: sub;">
+                            <label asp-for="Input.RememberMe" class="form-label" style="margin:12px;display: ruby-text;">
+                                <input class="form-check-input" asp-for="Input.RememberMe" />
+                                @Html.DisplayNameFor(m => m.Input.RememberMe)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <button id="login-submit" type="submit" class="btn btn-outline-success col-12">Log in</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <hr />        <hr />
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4" style="padding:10px">
+                    <a id="forgot-password" asp-page="./ForgotPassword" class="btn btn-outline-info col-12">?نسيت كلمة المرور</a>
+                </div>
+                <div class="col-md-4" style="padding:10px">
+                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-outline-info col-12">سجل مستخدم جديد</a>
+                </div>
+                <div class="col-md-4" style="padding:10px">
+                    <a id="resend-confirmation" asp-page="./ResendEmailConfirmation" class="btn btn-outline-info col-12">ارسل ايميل للتخقق</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function textselect(id) {
+
+        document.getElementById(id).style.borderBottom = '2px solid #20ecfa';
+        document.getElementById(id).style.transition = '1s';
+    }
+
+</script>

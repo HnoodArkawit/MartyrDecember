@@ -1,0 +1,70 @@
+﻿@model IEnumerable<MartyrDecember.Damain.ProfilePicture>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container" style="padding:150px 40px 150px 40px;direction: rtl;">
+    <div class="row">
+        <a asp-action="Create" style="color: white"><h3 class="btn btn-outline-light col-12" style="margin-bottom:23px;">اضافة بروفائل</h3></a>
+        @foreach (var item in Model)
+        {
+            <div class="col-12">
+                <div class="row grid">
+                    <div class="currently-market-item all dig">
+                        <div class="item">
+                            <div class="right-content">
+                            <div class="image">
+                                    <img src="data:image/*;base64,@(Convert.ToBase64String(@item.ImageUrl))" alt="" style="border-radius: 20px;height:300px;" />
+                            </div>
+                                <div class="line-dec"></div>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6">
+                                            @Html.ActionLink("تعديل", "Edit", new { id = item.ProfileId }, new { @class = "btn btn-outline-success col-12" })
+                                        </div>
+                                        <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6">
+                                            <button class="deleteBtn btn btn-outline-danger col-12" data-id="@item.ProfileId">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+        <br />
+        <a asp-action="Index" class="btn btn-outline-info col-lg-12">الرجوع للخلف</a>
+    </div>
+</div>
+<form id="deleteForm" asp-action="Delete" method="post">
+    <input type="hidden" Name="ProfileId" id="ProfileId" />
+</form>
+
+@section Scripts{
+    <script>
+        $(function () {
+            $('.deleteBtn').click(function (e) {
+                swal({
+                    title: "عملية حذف?",
+                    text: "هل انت متاكد من عملية الحذف?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true
+                }).then((confirm) => {
+                    if (confirm) {
+                        var btn = $(this);
+                        var id = btn.data("id");
+                        $('#ProfileId').val(id);
+                        $('#deleteForm').submit();
+                    }
+                });
+
+            });
+        });
+    </script>
+}

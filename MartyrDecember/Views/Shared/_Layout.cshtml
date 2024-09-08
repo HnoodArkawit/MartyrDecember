@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="شهداء ثورة ديسمبر اضف شهيد وقول شهيد وفيديو شهيد">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <title>شهداء ثورة ديسمبر</title>
+    <link rel="icon" href="~/logo2.ico">
+    <!-- Bootstrap core CSS -->
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="~/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="~/assets/css/templatemo-liberty-market.css">
+    <link rel="stylesheet" href="~/assets/css/owl.css">
+    <link rel="stylesheet" href="~/assets/css/animate.css">
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+</head>
+<body>
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="~/Home/Index" class="logo">
+                            <img src="~/logo.png" />
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li class="scroll-to-section"><a href="~/Home/About">عن الموقع</a></li>
+                            <li class="scroll-to-section"><a href="~/Email/Send">اتصل بنا</a></li>
+                            <li class="scroll-to-section"><a href="~/Home/Index/#SayMartar">اقوال الشهداء</a></li>
+                            <li class="scroll-to-section"><a href="~/Home/ViewVideo">فيديو الشهداء</a></li>
+                            <li class="scroll-to-section"><a href="~/Home/Index">صور  الشهداء</a></li>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                if (User.IsInRole("User"))
+                                {
+                                    <li class="has-sub">
+                                        <a href="#">لوحة تحكم الملفات</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="~/MarPic/Index">لوحة تحكم صورالشهداء</a></li>
+                                            <li><a href="~/MarVid/Index">لوحة تحكم فيديوالشهداء</a></li>
+                                            <li><a href="~/SayMartyrs/Index">لوحة تحكم اقوال الشهداء</a></li>
+                                        </ul>
+                                    </li>
+                                }
+                                if (User.IsInRole("Admin"))
+                                {
+                                    <li class="has-sub">
+                                        <a href="#">لوحة تحكم الملفات</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="~/MarPic/Index">لوحة تحكم صورالشهداء</a></li>
+                                            <li><a href="~/MarVid/Index">لوحة تحكم فيديوالشهداء</a></li>
+                                            <li><a href="~/SayMartyrs/Index">لوحة تحكم اقوال الشهداء</a></li>
+                                            <li><a href="~/ProfilePicture/Index">لوحة تحكم البروفائل</a></li>
+                                            <li><a href="~/Users/Index">لوحة تحكم المستخدمين</a></li>
+                                        </ul>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                        <partial name="_LoginPartial" />
+
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Main Banner Area Start ***** -->
+    <div class="currently-market">
+        <main role="main" class="pb-3">
+            <partial name="_Notification" />
+            @RenderBody()
+        </main>
+    </div>
+    <div id="Scroll-top">
+        <img src="~/up.ico" />
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-xs-12">
+                    <div class="right-text-content">
+                        <ul class="social-icons">
+                            <li>
+                                <a href="https://web.facebook.com/%D9%83%D9%84%D9%86%D8%A7-%D9%81%D9%8A-%D9%81%D8%AA%D9%8A%D9%84-%D9%84%D9%88-%D9%85%D8%A7-%D8%AC%D9%8A%D8%A8%D9%86%D8%A7-%D8%AD%D9%82-%D8%A7%D9%84%D8%B4%D9%87%D9%8A%D8%AF-107329144127742" class="btn btn-outline-light btn-block col-12" style="margin-top:10px">صفحتة كلنا في فتيل لو ما جبنا حق الشهيد علي الفيس بوك</a>
+                            </li>
+                            <li>
+                                <a href="https://facebook.com/Fomosudan" class="btn btn-outline-light btn-block col-12" style="margin-top:10px">صفحتة منظمة اسر شهداء ثورة ديسمير علي الفيس بوك</a>
+                            </li>
+                            <li>
+                                <a href="~/Email/Send" class="btn btn-outline-light btn-block col-12" style="margin-top:10px">تواصل معانا</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="logo">
+                        <a href="#"><img src="/logo.png" alt="" style="width: 250px;padding-top: 41px;"></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-xs-12">
+                    <div class="left-text-content">
+                        <p style="padding-top: 41px;">
+                            © Copyright 2022 System Dot Project
+
+                            <br>Martyrs Of The December Revolution.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Scripts -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="~/assets/js/isotope.min.js"></script>
+    <script src="~/assets/js/owl-carousel.js"></script>
+    <script src="~/assets/js/wow.js"></script>
+    <script src="~/assets/js/tabs.js"></script>
+    <script src="~/assets/js/popup.js"></script>
+    <script src="~/assets/js/custom.js"></script>
+    <script src="~/lib/sweetalert/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="~/lib/sweetalert/sweetalert.min.js"></script>
+    <script src="~/assets/js/frommi.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

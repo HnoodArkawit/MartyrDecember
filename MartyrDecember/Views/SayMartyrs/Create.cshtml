@@ -1,0 +1,66 @@
+﻿@model MartyrDecember.Application.Features.SayMartyr.Commands.CreateSay.CreateSayMartyCommand
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<div class="container" style="padding:150px 40px 150px 40px;direction: rtl;">
+    <div class="row">
+        <div class="col-12">
+            <form id="contact" asp-action="Create" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-12">
+                        <fieldset>
+                            <label asp-for="MartyrName" class="control-label"></label>
+                            <input asp-for="MartyrName" class="form-control" />
+                            <span asp-validation-for="MartyrName" class="text-danger"></span>
+                        </fieldset>
+                    </div>
+                    <div class="col-lg-8 col-md-8 ">
+                        <fieldset>
+                            <label asp-for="Description" class="control-label" style="color: white"></label>
+                            <br />
+                            @Html.TextAreaFor(model => model.Description, new { @class = "form-control",@id="message",@style="height: 300px;",@placeholder="...اكتب هنا"})
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </fieldset>
+                    </div>
+                    <div class="col-lg-4">
+                        <div>
+                            <label asp-for="ImageUrl" class="control-label"></label>
+                        </div>
+                        <div class="custom-file-input" style="height:245px;border-radius:10px;position:relative;border:2px dashed #c2cdda;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+                            <div class="card" style="position:absolute;display:flex;align-items:center;justify-content:center;">
+                                <img id="FromImeagPrv" style="height:245px;width: 375px;" src="~/assets/images/ImegMartars.jpg" alt="Product Front Image" style="width:100%;height: 100%;object-fit:cover;" />
+                            </div>
+                        </div>
+                        <div class="card" style="margin-top:20px;width:100%;display:block;border:1px;border-radius:25px;color:#000;font-size:18px;text-transform:uppercase;cursor:pointer;">
+                            <input asp-for="ImageUrl" type="file" name="file" id="FLFeonImage" accept="image/*"
+                                   onchange="document.getElementById('FromImeagPrv').src=window.URL.createObjectURL(this.files[0])" style="border-radius: 20px;" />
+                        </div>
+                    </div>
+                </div><br />
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6"style="padding:10px">
+                            <input type="submit" value="اضافة" class="btn btn-outline-success fa fa-save col-12" style="padding:10px" />
+                        </div>
+                        <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6"style="padding:10px">
+                            <a asp-action="Index" class="btn btn-outline-info fa fa-rotate-back col-12" style="padding:10px">الرجوع للخلف</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
+        }
+

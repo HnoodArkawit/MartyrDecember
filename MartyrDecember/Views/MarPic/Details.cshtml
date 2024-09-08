@@ -1,0 +1,96 @@
+﻿@model MartyrDecember.Domain.MarPic
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="container" style="direction: rtl;">
+    <div class="row">
+        <div class="col-12">
+            <div class="author-page">
+                <div class="container">
+
+                    <div class="item" style="display:  revert;  margin-top: 31px;}">
+                        <p class="lead" style="margin: 5px;padding-top:0px;text-align: center;">
+                            {يَا أَيَّتُهَا النَّفْسُ الْمُطْمَئِنَّةُ * ارْجِعِي إِلَى رَبِّكِ رَاضِيَةً مَرْضِيَّةً * فَادْخُلِي فِي عِبَادِي * وَادْخُلِي جَنَّتِي}
+                        </p>
+                    </div>
+                    <div class="item" style="display:  revert;">
+                        <p class="lead" style="margin: 5px;padding-top:0px;text-align: center;">
+                            {كُلُّ نَفْسٍۢ ذَآئِقَةُ ٱلْمَوْتِ ۗ وَإِنَّمَا تُوَفَّوْنَ أُجُورَكُمْ يَوْمَ ٱلْقِيَٰمَةِ ۖ فَمَن زُحْزِحَ عَنِ ٱلنَّارِ وَأُدْخِلَ ٱلْجَنَّةَ فَقَدْ فَازَ ۗ وَمَا ٱلْحَيَوٰةُ ٱلدُّنْيَآ إِلَّا مَتَٰعُ ٱلْغُرُورِ}
+                        </p>
+                    </div>
+                    <div class="item" style="display:  revert;">
+                        <p class="lead" style="margin: 5px;padding-top:0px;text-align: center;">
+                            {وَلَنَبْلُوَنَّكُمْ بِشَيْءٍ مِنَ الْخَوْفِ وَالْجُوعِ وَنَقْصٍ مِنَ الْأَمْوَالِ وَالْأَنْفُسِ وَالثَّمَرَاتِ وَبَشِّرِ الصَّابِرِينَ * الَّذِينَ إِذَا أَصَابَتْهُمْ مُصِيبَةٌ قَالُوا إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ}
+                        </p>
+                    </div>
+                    <div class="item" style="display:  revert;">
+                        <p class="lead" style="margin: 5px;padding-top:0px;text-align: center;">
+                            {كُلُّ مَنْ عَلَيْهَا فَانٍ وَيَبْقَى وَجْهُ رَبِّكَ ذُو الْجَلالِ وَالإِكْرَامِ}
+                        </p>
+                    </div>
+                    <div class="line-dec"></div>
+
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                            <div class="author">
+                                <img src="assets/images/single-author.jpg" alt="" style="border-radius: 50%; max-width: 170px;">
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <div class="right-info">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="info-item">
+                                                    <h6>@Html.DisplayFor(model => model.MartyrName)</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <div class="right-info">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="info-item">
+                                                    <h6>@Html.DisplayFor(model => model.DateMartyr)</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-sm-4 col-md-4 col-xs-4">
+                        <div class="item" style="display: inherit;">
+                            <div class="row">
+                                <div class="col-12">
+                                    <img src="data:image/*;base64,@(Convert.ToBase64String(@Model.ImageUrl))" alt="" style="border-radius: 20px; height:400px;" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <div class="item">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h6 style="border-radius: 20px; height:400px;"> @Html.DisplayFor(model => model.Description)</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <a asp-action="Index" class="btn btn-outline-info col-12">الرجوع للخلف</a>
+            </div>
+        </div>
+    </div>
+</div>

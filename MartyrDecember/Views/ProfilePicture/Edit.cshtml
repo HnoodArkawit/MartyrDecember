@@ -1,0 +1,85 @@
+﻿@model MartyrDecember.Application.Features.Profile.Commands.UpdateProfile.UpdateProfileCommand
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container" style="padding:150px 40px 150px 40px;direction: rtl;">
+    <div class="row">
+        <div class="col-12">
+            <table id="contact" class="table table" style="font-family: MyFont;color:black;border-bottom: 0px;">
+                <thead>
+                    <tr style=" border-style: hidden;">
+                        <th style="font-size:12px">
+                            <form asp-action="Edit" enctype="multipart/form-data">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="form-group">
+
+                                            <input type="hidden" asp-for="UserId" class="form-control" />
+                                            <input type="hidden" asp-for="ProfileId" class="form-control" />
+
+                                            <div class="card-body">
+                                                <div>
+                                                    <label asp-for="ImageUrl" class="control-label"></label>
+                                                </div>
+                                                @if (Model.ImageUrl != null)
+                                                {
+                                                    <div class="image">
+
+                                                        <img id="FromImeagPrv" alt="profile" class="profile-picture" src="data:image/*;base64,@(Convert.ToBase64String(Model.ImageUrl))" style="width:100%;height:305px;" />
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="image">
+                                                        <img id="FromImeagPrv" alt="profile" class="profile-picture" src="~/images/avatar-male.jpg" style="width:100%;height:305px;" />
+                                                    </div>
+                                                }
+                                                <div class="card" style="margin-top:20px;width:100%;display:block;border:1px;border-radius:25px;color:#000;font-size:18px;text-transform:uppercase;cursor:pointer;">
+                                                    <input type="file" asp-for="ImageUrl" name="file" id="FLFeonImage" accept="image/*"
+                                                           onchange="document.getElementById('FromImeagPrv').src=window.URL.createObjectURL(this.files[0])" style="border-radius: 20px;" />
+                                                </div>
+                                                <input asp-for="ImageUrl" type="hidden" accept="image/*" class="form-control" />
+                                                <input type="hidden" asp-for="ProfileId" />
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6" style="padding:10px">
+                                            <input type="submit" value="تعديل" class="btn btn-outline-success fa fa-edit col-12" style="padding:10px" />
+                                        </div>
+                                        <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6" style="padding:10px">
+                                            <a asp-action="Index" class="btn btn-outline-info fa fa-rotate-back col-12" style="padding:10px">الرجوع للخلف</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
+        }
+<script>
+    CKEDITOR.replace("Description");
+</script>
+

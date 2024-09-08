@@ -1,0 +1,60 @@
+﻿@model IEnumerable<UserViewModel>
+
+@{
+    ViewData["Title"] = "Users";
+}
+
+<h1>Users</h1>
+
+<div class="container" style="margin:150px auto;direction: rtl;">
+    <div class="row tm-content-row">
+        <div class="col-12">
+            <div class="tm-bg-primary-dark tm-block tm-block-products">
+                <div class="tm-product-table-container">
+                    <div class="item" style="border-radius: 0px;">
+                        <table class="table table-hover tm-table-small tm-product-table">
+                            <thead>
+
+                                <tr>
+                                    <th scope="col">الاسم الاول</th>
+                                    <th scope="col">الاسم الاخير</th>
+                                    <th scope="col">اسم المستخدم</th>
+                                    <th scope="col">البريد الالكتروني</th>
+                                    <th scope="col">المجموعة</th>
+                                    <th scope="col">المجموعات</th>
+                                    <th scope="col">حذف</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var user in Model)
+                                {
+                                    <tr>
+                                        <td>@user.FirstName</td>
+                                        <td>@user.LastName</td>
+                                        <td>@user.UserName</td>
+                                        <td>@user.Email</td>
+                                        <td>@string.Join(" , ", user.Roles.ToList())</td>
+                                        <td>
+                                            <a class="btn btn-primary" asp-controller="Users" asp-action="ManageRoles" asp-route-userId="@user.Id">ادارة المجموعات</a>
+                                        </td>
+
+                                        <td>
+                                            <form asp-action="Delete" asp-route-id="@user.Id" method="post">
+                                                <button type="submit" class="btn btn-outline-danger fa fa-trash col-12" style="margin-top:0px;" onclick="return confirm('هل تريد الحذف فعلا ؟')">
+                                                    حذف
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-12">
+                        <a asp-action="Index" class="btn btn-outline-info fa fa-rotate-back col-12" style="padding:10px">الرجوع للخلف</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

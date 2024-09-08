@@ -1,0 +1,86 @@
+﻿@model MartyrDecember.Application.Features.SayMartyr.Commands.UpdateSay.UpdateSayCommand
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container" style="padding:150px 40px 150px 40px;direction: rtl;">
+    <div class="row">
+        <div class="col-lg-12">
+            <form id="contact" asp-action="Edit" enctype="multipart/form-data">
+                <div class="row">
+                    <input type="hidden" asp-for="UserId" class="form-control" />
+                    <input type="hidden" asp-for="SayId" class="form-control" />
+
+                    <div class="col-12">
+                        <fieldset>
+                            <label asp-for="MartyrName" class="control-label"></label>
+                            <input asp-for="MartyrName" class="form-control" />
+                            <span asp-validation-for="MartyrName" class="text-danger"></span>
+                        </fieldset>
+                    </div>
+                    <div class="col-lg-8">
+                        <fieldset>
+                            <label asp-for="Description" class="control-label" style="color: white"></label>
+                            <br />
+                            @Html.TextAreaFor(model => model.Description, new { @class = "form-control",@id="message",@style="height: 300px;"})
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </fieldset>
+                    </div>
+                    <div class="col-lg-4">
+                        <div>
+                            <label asp-for="ImageUrl" class="control-label"></label>
+                        </div>
+                        @if (Model.ImageUrl != null)
+                        {
+                            <div class="custom-file-input" style="height:245px;border-radius:10px;position:relative;border:2px dashed #c2cdda;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+                                <div class="card" style="position:absolute;display:flex;align-items:center;justify-content:center;">
+                                    <img id="FromImeagPrv" alt="profile" class="profile-picture" src="data:image/*;base64,@(Convert.ToBase64String(Model.ImageUrl))" style="width:375px;height: 240px;" />
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="custom-file-input" style="height:245px;border-radius:10px;position:relative;border:2px dashed #c2cdda;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+                                <div class="card" style="position:absolute;height:245px;display:flex;align-items:center;justify-content:center;">
+                                    <img id="FromImeagPrv" alt="profile" class="profile-picture" src="~/images/avatar-male.jpg" style="width:100%;height:305px;" />
+                                </div>
+                            </div>
+                        }
+                        <div class="card" style="margin-top:20px;width:100%;display:block;border:1px;border-radius:25px;color:#000;font-size:18px;text-transform:uppercase;cursor:pointer;">
+                            <input type="file" asp-for="ImageUrl" name="file" id="FLFeonImage" accept="image/*"
+                                   onchange="document.getElementById('FromImeagPrv').src=window.URL.createObjectURL(this.files[0])" style="border-radius: 20px;" />
+                        </div>
+                        <input asp-for="ImageUrl" type="hidden" accept="image/*" class="form-control" />
+                        <input type="hidden" asp-for="SayId" />
+
+                    </div>
+                </div><br />
+
+                <div class="container" style="margin-top:50px">
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6" style="padding:10px">
+                            <input type="submit" value="تعديل" class="btn btn-outline-success fa fa-edit col-12" style="margin:10px" />
+                        </div>
+                        <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6" style="padding:10px">
+                            <a asp-action="Index" class="btn btn-outline-info fa fa-rotate-back col-12" style="margin:10px">الرجوع للخلف</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
+        }
+@*<script>
+    CKEDITOR.replace("Description");
+</script>
+*@

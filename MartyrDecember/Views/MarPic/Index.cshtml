@@ -1,0 +1,86 @@
+﻿@model IEnumerable<MartyrDecember.Domain.MarPic>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="container" style="padding:150px 40px 150px 40px;direction: rtl;">
+    <a asp-action="Create" style="color: white"><h3 class="btn btn-outline-light fa fa-add col-12" style="margin-bottom:23px;">اضافة شهيد</h3></a>
+    <div class="row tm-content-row">
+        <div class="tm-bg-primary-dark tm-block tm-block-products">
+            <div class="tm-product-table-container">
+                <div class="item" style="border-radius: 0px;">
+
+                    <table class="table tm-table-small tm-product-table" style="border-collapse: inherit;">
+                        <thead>
+                            <tr>
+                                <th scope="col">اسم الشهيد</th>
+                                <th scope="col">تاريخ الاستشهاد</th>
+                                <th scope="col">تفاصيل الاستشهاد</th>
+                                <th scope="col">الصورة</th>
+                                <th scope="col">العمليات</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.MartyrName)</td>
+                                    <td style="width:200px;"> @Html.DisplayFor(modelItem => item.DateMartyr)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                    <td style="width:200px;">
+                                        <img id="profilePicture" alt="profile" src="data:image/*;base64,@(Convert.ToBase64String(@item.ImageUrl))" style="border-radius: 20px;height:250px;" />
+                                    </td>
+                                    <td >
+                                        @Html.ActionLink("تعديل", "Edit", new { id = item.MarPicId }, new { @class = "btn btn-outline-success fa fa-edit col-12" })
+                                        <div class="line-dec" style="margin: 20px auto;"></div>
+                                        @Html.ActionLink("التفاصيل", "Details", new { id = item.MarPicId }, new { @class = "btn btn-outline-primary fa fa-book-open col-12" })
+                                        <div class="line-dec" style="margin: 20px auto;"></div>
+                                        <button class="deleteBtn btn btn-outline-danger fa fa-trash col-12" data-id="@item.MarPicId">
+                                            حذف
+                                        </button>
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <a asp-action="Index" class="btn btn-outline-info fa fa-rotate-back col-lg-12">الرجوع للخلف</a>
+    </div>
+
+</div>
+<br>
+
+<form id="deleteForm" asp-action="Delete" method="post">
+    <input type="hidden" Name="MarPicId" id="MarPicId" />
+</form>
+
+@section Scripts{
+    <script>
+        $(function () {
+            $('.deleteBtn').click(function (e) {
+                swal({
+                    title: "عملية حذف?",
+                    text: "هل انت متاكد من عملية الحذف?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true
+                }).then((confirm) => {
+                    if (confirm) {
+                        var btn = $(this);
+                        var id = btn.data("id");
+                        $('#MarPicId').val(id);
+                        $('#deleteForm').submit();
+                    }
+                });
+
+            });
+        });
+    </script>
+}
